@@ -1,0 +1,57 @@
+- !<AssetImportMetadata/2338fce3-a9e5-4f20-bded-9671e102f78b>
+  ImportedAssetIds:
+    66780cf3a4dcb2b8: !<reference> 3b51abff-1f5e-445e-bade-018afb01c3e2
+    Scene: !<reference> 9c3ee579-3e28-4424-b5cb-9f816ccc848b
+  ImporterName: FbxImporter
+  PrimaryAsset: !<reference> 9c3ee579-3e28-4424-b5cb-9f816ccc848b
+  PackageType: LegacyPackage
+  LegacyPackagePolicy: CanBeUnpackedTransparent
+  ExtraData:
+    {}
+  AssetDataMap:
+    Scene: !<own> fe27de89-fc8b-4b9c-9fa4-27b0d878704d
+  DependentFiles:
+    []
+  ImporterSettings: !<FbxImporterSettings>
+    UseLegacyImporter: false
+    WithMaterials: true
+    NamingConvention: ByCategorySanitizeV2
+    PersistentIdGenerationAlgorithm: DescriptorBased
+    AnimationCurveOptimization: true
+    CustomAnimationSamplingRate: 30.000000
+    ImportVertexColor: true
+    ImportTangentsAndBinormals: true
+    RegenerateTangentsAndBinormals: false
+    RegenerateNormalsForSkinnedMeshes: true
+    ImportBlendShapeAnimation: true
+    ImportVertexAnimation: true
+    GeneratePivots: true
+    TriangulateNURBS: true
+    UseLegacyFbxLoader: false
+  CompressionSettings: !<ComplexCompressionSettings>
+    Presets:
+      {}
+    ExtensionMappings:
+      {}
+    Overrides:
+      {}
+- !<SceneObject/3b51abff-1f5e-445e-4521-fe7504fe3c1d>
+  PrefabRemaps:
+    []
+  Name: cone
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []
+- !<ObjectPrefabAssetData/fe27de89-fc8b-4b9c-9fa4-27b0d878704d>
+  Prototype: !<ObjectOwner/4671a89e-17b6-4128-9072-e930a6fa7584>
+    PackagePath: ""
+    objects:
+      - !<own> 3b51abff-1f5e-445e-4521-fe7504fe3c1d

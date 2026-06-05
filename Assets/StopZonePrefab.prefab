@@ -1,0 +1,21 @@
+- !<ObjectPrefab/e7145fd7-227e-4fd5-a6ce-7ff971e75fc4>
+  PackagePath: ""
+  objects:
+    - !<own> 21348b96-7570-4f7d-9bd2-f4b71a82717a
+  LazyLoading: false
+  RetainAssets: true
+- !<SceneObject/21348b96-7570-4f7d-9bd2-f4b71a82717a>
+  PrefabRemaps:
+    - 21348b96-7570-4f7d-9bd2-f4b71a82717a: 21348b96-7570-4f7d-642d-0b48e57d8e85
+  Name: stop_zone
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []

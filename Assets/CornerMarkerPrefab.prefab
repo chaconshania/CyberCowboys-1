@@ -1,0 +1,21 @@
+- !<ObjectPrefab/d3e21c47-4a26-4b98-94e5-93c90de280a3>
+  PackagePath: ""
+  objects:
+    - !<own> 44ec1b63-6207-4bed-85c9-590c74d2c2f5
+  LazyLoading: false
+  RetainAssets: true
+- !<SceneObject/44ec1b63-6207-4bed-85c9-590c74d2c2f5>
+  PrefabRemaps:
+    - 44ec1b63-6207-4bed-85c9-590c74d2c2f5: 44ec1b63-6207-4bed-7a36-a6f38b2d3d0a
+  Name: corner_marker
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []

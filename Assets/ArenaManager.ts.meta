@@ -1,0 +1,80 @@
+- !<AssetImportMetadata/313518ce-2334-4851-b0f1-3681a12b44b9>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 5f314c18-c512-4e13-8a5c-07e50f017034
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 5f314c18-c512-4e13-8a5c-07e50f017034
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> cb827dc8-81bb-4712-af41-4c56bf6439e9
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/cb827dc8-81bb-4712-af41-4c56bf6439e9>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: a7e9f0f5-9dea-4c2c-85f8-3c7d56f52f09
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    arenaRoot: false
+    arrowPrefab: false
+    conePrefab: false
+    cornerMarkerPrefab: false
+    horseMarker: false
+    matCurrent: false
+    matDone: false
+    matPending: false
+    pathLinePrefab: false
+    pathNodePrefab: false
+    polePrefab: false
+    stopZonePrefab: false
+    uiManager: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - arenaRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      horseMarker: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      cornerMarkerPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      pathNodePrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      conePrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      polePrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      stopZonePrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      arrowPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      pathLinePrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      uiManager: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      matPending: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      matCurrent: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      matDone: !<reference.Material> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input SceneObject arenaRoot
+    - // @input SceneObject horseMarker
+    - // @input Asset.ObjectPrefab cornerMarkerPrefab
+    - // @input Asset.ObjectPrefab pathNodePrefab
+    - // @input Asset.ObjectPrefab conePrefab
+    - // @input Asset.ObjectPrefab polePrefab
+    - // @input Asset.ObjectPrefab stopZonePrefab
+    - // @input Asset.ObjectPrefab arrowPrefab
+    - // @input Asset.ObjectPrefab pathLinePrefab
+    - // @input SceneObject uiManager
+    - // @input Asset.Material matPending
+    - // @input Asset.Material matCurrent
+    - // @input Asset.Material matDone

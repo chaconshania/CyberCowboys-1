@@ -1,0 +1,56 @@
+- !<AssetImportMetadata/a06959f7-08d3-4685-9fe1-7a0847c38f1e>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> b723a59d-4e35-48bb-9a02-1c5eba95a23d
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> b723a59d-4e35-48bb-9a02-1c5eba95a23d
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 0ba95396-eea6-466d-9933-bcb5d051a0ec
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/0ba95396-eea6-466d-9933-bcb5d051a0ec>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 7cb258b6-f5a0-4de8-a07a-02b02fc2b21e
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    checkMesh: false
+    glowAmplitude: false
+    glowFrequency: false
+    numberLabel: false
+    ringMesh: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - ringMesh: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      checkMesh: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      numberLabel: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      glowFrequency: 2.400000
+      glowAmplitude: 0.180000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input SceneObject ringMesh
+    - // @input SceneObject checkMesh
+    - // @input SceneObject numberLabel
+    - // @input float glowFrequency = 2.4
+    - // @input float glowAmplitude = 0.18

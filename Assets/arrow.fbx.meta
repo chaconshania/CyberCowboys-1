@@ -1,0 +1,57 @@
+- !<AssetImportMetadata/5fae874a-9e09-4bc3-975b-3e97ab45ba64>
+  ImportedAssetIds:
+    66780cf3a4dcb2b8: !<reference> a2db474f-fca8-46ca-b845-74f61541a3e5
+    Scene: !<reference> 72ed9b1d-330b-4376-8443-9d5db6b5a423
+  ImporterName: FbxImporter
+  PrimaryAsset: !<reference> 72ed9b1d-330b-4376-8443-9d5db6b5a423
+  PackageType: LegacyPackage
+  LegacyPackagePolicy: CanBeUnpackedTransparent
+  ExtraData:
+    {}
+  AssetDataMap:
+    Scene: !<own> a86486fa-191d-4676-9d12-e74b07a8d9b0
+  DependentFiles:
+    []
+  ImporterSettings: !<FbxImporterSettings>
+    UseLegacyImporter: false
+    WithMaterials: true
+    NamingConvention: ByCategorySanitizeV2
+    PersistentIdGenerationAlgorithm: DescriptorBased
+    AnimationCurveOptimization: true
+    CustomAnimationSamplingRate: 30.000000
+    ImportVertexColor: true
+    ImportTangentsAndBinormals: true
+    RegenerateTangentsAndBinormals: false
+    RegenerateNormalsForSkinnedMeshes: true
+    ImportBlendShapeAnimation: true
+    ImportVertexAnimation: true
+    GeneratePivots: true
+    TriangulateNURBS: true
+    UseLegacyFbxLoader: false
+  CompressionSettings: !<ComplexCompressionSettings>
+    Presets:
+      {}
+    ExtensionMappings:
+      {}
+    Overrides:
+      {}
+- !<SceneObject/a2db474f-fca8-46ca-47ba-8b09eabe5c1a>
+  PrefabRemaps:
+    []
+  Name: arrow
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []
+- !<ObjectPrefabAssetData/a86486fa-191d-4676-9d12-e74b07a8d9b0>
+  Prototype: !<ObjectOwner/4bc3ed9c-8cc1-41b5-8cfe-fb69d40f464d>
+    PackagePath: ""
+    objects:
+      - !<own> a2db474f-fca8-46ca-47ba-8b09eabe5c1a

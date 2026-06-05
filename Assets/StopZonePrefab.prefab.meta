@@ -1,0 +1,36 @@
+- !<AssetImportMetadata/007e53e5-054f-4c9c-9ae8-60238c03f77c>
+  ImportedAssetIds:
+    ObjectPrefab: !<reference> e7145fd7-227e-4fd5-a6ce-7ff971e75fc4
+  ImporterName: ObjectPrefabImporter
+  PrimaryAsset: !<reference> e7145fd7-227e-4fd5-a6ce-7ff971e75fc4
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    ObjectPrefab: !<own> 0c2852f4-d2a0-478b-8f23-81cb62ac0d43
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ObjectPrefabAssetData/0c2852f4-d2a0-478b-8f23-81cb62ac0d43>
+  Prototype: !<ObjectOwner/c6e9aa9e-1805-4c9c-8786-9150d1a5731d>
+    PackagePath: ""
+    objects:
+      - !<own> 21348b96-7570-4f7d-642d-0b48e57d8e85
+- !<SceneObject/21348b96-7570-4f7d-642d-0b48e57d8e85>
+  PrefabRemaps:
+    []
+  Name: stop_zone
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []

@@ -1,0 +1,21 @@
+- !<ObjectPrefab/1cb3054a-19cf-4275-9901-5ac64e3b050a>
+  PackagePath: ""
+  objects:
+    - !<own> e8930334-722e-42fa-96ea-b416833d5c44
+  LazyLoading: false
+  RetainAssets: true
+- !<SceneObject/e8930334-722e-42fa-96ea-b416833d5c44>
+  PrefabRemaps:
+    - e8930334-722e-42fa-96ea-b416833d5c44: e8930334-722e-42fa-6915-4be97cc2a3bb
+  Name: path_node
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []

@@ -1,0 +1,21 @@
+- !<ObjectPrefab/4e20f402-6637-4d4b-a2d0-28aa3cfc5a1f>
+  PackagePath: ""
+  objects:
+    - !<own> 8d6c1f1c-26cd-42c9-8b8d-29d5173431fd
+  LazyLoading: false
+  RetainAssets: true
+- !<SceneObject/8d6c1f1c-26cd-42c9-8b8d-29d5173431fd>
+  PrefabRemaps:
+    - 8d6c1f1c-26cd-42c9-8b8d-29d5173431fd: 8d6c1f1c-26cd-42c9-7472-d62ae8cbce02
+  Name: cone
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []

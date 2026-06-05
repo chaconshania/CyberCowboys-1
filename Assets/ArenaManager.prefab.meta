@@ -1,0 +1,52 @@
+- !<AssetImportMetadata/f96dd136-0d97-442f-a804-9b3259970c07>
+  ImportedAssetIds:
+    ObjectPrefab: !<reference> 7b1bcccc-af6a-4172-9a4d-b40856ba498b
+  ImporterName: ObjectPrefabImporter
+  PrimaryAsset: !<reference> 7b1bcccc-af6a-4172-9a4d-b40856ba498b
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    ObjectPrefab: !<own> 7f4562f3-9845-4c90-b251-ae70df6d9d22
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ObjectPrefabAssetData/7f4562f3-9845-4c90-b251-ae70df6d9d22>
+  Prototype: !<ObjectOwner/9cc299bb-448f-4bb7-b520-e1d453e9c0c9>
+    PackagePath: ""
+    objects:
+      - !<own> be3cb849-1000-4f9f-6ec3-e14bf3b47433
+- !<SceneObject/be3cb849-1000-4f9f-6ec3-e14bf3b47433>
+  PrefabRemaps:
+    []
+  Name: ArenaManager
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> f2fa2ff5-b931-41ae-65f8-79280c59e369
+- !<ScriptComponent/f2fa2ff5-b931-41ae-65f8-79280c59e369>
+  PrefabRemaps:
+    []
+  Name: ArenaManager
+  Enabled: true
+  ScriptAsset: !<reference> 3e04b4c2-0285-44e6-8a8a-add6bace97da
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}

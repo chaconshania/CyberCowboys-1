@@ -1,0 +1,92 @@
+- !<AssetImportMetadata/c0c521cf-b53c-4ea1-8ae7-9fdb9af56793>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> e7b93e5b-2117-4992-bda6-0a189c15e23f
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> e7b93e5b-2117-4992-bda6-0a189c15e23f
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> b7c2502a-31e0-4562-b1a7-2a3ffbb59336
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/b7c2502a-31e0-4562-b1a7-2a3ffbb59336>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: e2776418-ad61-462b-a4b4-fd77def37104
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    arenaManagerObj: false
+    btnConfirmCorners: false
+    courseCardPrefab: false
+    courseCardRoot: false
+    panelCalibrate: false
+    panelCourseList: false
+    panelDesign: false
+    panelHome: false
+    panelRide: false
+    rideChipRoot: false
+    seqChipPrefab: false
+    seqChipRoot: false
+    txtCornerCount: false
+    txtFlash: false
+    txtInstruction: false
+    txtNextObs: false
+    txtScore: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - arenaManagerObj: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      panelHome: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      panelCourseList: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      panelCalibrate: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      panelDesign: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      panelRide: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      txtInstruction: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      txtCornerCount: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      txtNextObs: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      txtScore: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      txtFlash: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      btnConfirmCorners: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      seqChipRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      seqChipPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      rideChipRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      courseCardPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      courseCardRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input SceneObject arenaManagerObj
+    - // @input SceneObject panelHome
+    - // @input SceneObject panelCourseList
+    - // @input SceneObject panelCalibrate
+    - // @input SceneObject panelDesign
+    - // @input SceneObject panelRide
+    - // @input Component.Text txtInstruction
+    - // @input Component.Text txtCornerCount
+    - // @input Component.Text txtNextObs
+    - // @input Component.Text txtScore
+    - // @input Component.Text txtFlash
+    - // @input SceneObject btnConfirmCorners
+    - // @input SceneObject seqChipRoot
+    - // @input Asset.ObjectPrefab seqChipPrefab
+    - // @input SceneObject rideChipRoot
+    - // @input Asset.ObjectPrefab courseCardPrefab
+    - // @input SceneObject courseCardRoot

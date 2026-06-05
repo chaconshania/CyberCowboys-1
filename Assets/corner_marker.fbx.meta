@@ -1,0 +1,57 @@
+- !<AssetImportMetadata/96c216a9-b364-4d37-90ab-dd3590aa690d>
+  ImportedAssetIds:
+    66780cf3a4dcb2b8: !<reference> 1ed2b1d5-a450-44d5-bafd-f24741eb3874
+    Scene: !<reference> b8721eb9-d728-4fd9-91e2-3fd96f2c5a2f
+  ImporterName: FbxImporter
+  PrimaryAsset: !<reference> b8721eb9-d728-4fd9-91e2-3fd96f2c5a2f
+  PackageType: LegacyPackage
+  LegacyPackagePolicy: CanBeUnpackedTransparent
+  ExtraData:
+    {}
+  AssetDataMap:
+    Scene: !<own> 3388990a-cb81-4e38-9aa0-da591ac8e1c8
+  DependentFiles:
+    []
+  ImporterSettings: !<FbxImporterSettings>
+    UseLegacyImporter: false
+    WithMaterials: true
+    NamingConvention: ByCategorySanitizeV2
+    PersistentIdGenerationAlgorithm: DescriptorBased
+    AnimationCurveOptimization: true
+    CustomAnimationSamplingRate: 30.000000
+    ImportVertexColor: true
+    ImportTangentsAndBinormals: true
+    RegenerateTangentsAndBinormals: false
+    RegenerateNormalsForSkinnedMeshes: true
+    ImportBlendShapeAnimation: true
+    ImportVertexAnimation: true
+    GeneratePivots: true
+    TriangulateNURBS: true
+    UseLegacyFbxLoader: false
+  CompressionSettings: !<ComplexCompressionSettings>
+    Presets:
+      {}
+    ExtensionMappings:
+      {}
+    Overrides:
+      {}
+- !<SceneObject/1ed2b1d5-a450-44d5-4502-0db8be14c78b>
+  PrefabRemaps:
+    []
+  Name: corner_marker
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []
+- !<ObjectPrefabAssetData/3388990a-cb81-4e38-9aa0-da591ac8e1c8>
+  Prototype: !<ObjectOwner/2558f7e5-8a4c-4c3b-a5c2-f85a0a3bd970>
+    PackagePath: ""
+    objects:
+      - !<own> 1ed2b1d5-a450-44d5-4502-0db8be14c78b

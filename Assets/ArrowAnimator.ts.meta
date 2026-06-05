@@ -1,0 +1,53 @@
+- !<AssetImportMetadata/16c46cec-a4d5-4981-845a-52444889f303>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 5c40a40b-b448-443b-8a6a-4a9a6ac2dee7
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 5c40a40b-b448-443b-8a6a-4a9a6ac2dee7
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 85957822-e838-4371-a53a-f63e1c8aac9f
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/85957822-e838-4371-a53a-f63e1c8aac9f>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 5b5d6505-d7d3-48fe-b19e-a2f173030f45
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    bobAmplitude: false
+    bobFrequency: false
+    pulseAmplitude: false
+    pulseFrequency: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - bobAmplitude: 0.040000
+      bobFrequency: 1.800000
+      pulseAmplitude: 0.120000
+      pulseFrequency: 2.200000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input float bobAmplitude = 0.04
+    - // @input float bobFrequency = 1.8
+    - // @input float pulseAmplitude = 0.12
+    - // @input float pulseFrequency = 2.2

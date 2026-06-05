@@ -1,0 +1,36 @@
+- !<AssetImportMetadata/0d123e93-e20b-412f-8c29-5e21a64dbcf6>
+  ImportedAssetIds:
+    ObjectPrefab: !<reference> 4e20f402-6637-4d4b-a2d0-28aa3cfc5a1f
+  ImporterName: ObjectPrefabImporter
+  PrimaryAsset: !<reference> 4e20f402-6637-4d4b-a2d0-28aa3cfc5a1f
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    ObjectPrefab: !<own> 02351ed1-8c9a-4713-ae2d-0a1f335d845d
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ObjectPrefabAssetData/02351ed1-8c9a-4713-ae2d-0a1f335d845d>
+  Prototype: !<ObjectOwner/6b52181b-7c19-4ba4-953a-673a1981f98c>
+    PackagePath: ""
+    objects:
+      - !<own> 8d6c1f1c-26cd-42c9-7472-d62ae8cbce02
+- !<SceneObject/8d6c1f1c-26cd-42c9-7472-d62ae8cbce02>
+  PrefabRemaps:
+    []
+  Name: cone
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []
