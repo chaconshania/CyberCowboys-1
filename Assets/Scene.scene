@@ -376,7 +376,7 @@
   ShowEditingPreview: true
   TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
   SizeToFit: false
-  FontSize: 48
+  FontSize: 38
   Font: !<reference> 3cd6aa17-9280-44f5-bb75-ce98b7770c7c
   LayoutRect:
     left: -7.500000
@@ -2026,7 +2026,7 @@
   ShowEditingPreview: true
   TouchHandler: !<reference> 00000000-0000-0000-0000-000000000000
   SizeToFit: false
-  FontSize: 48
+  FontSize: 32
   Font: !<reference> 3cd6aa17-9280-44f5-bb75-ce98b7770c7c
   LayoutRect:
     left: -7.500000
@@ -2612,8 +2612,7 @@
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
-    - !<own> f2e01819-9796-45b4-99e7-daec70501bbb
-    - !<own> 5c13ffa1-59f9-4f4a-acf6-97600f086481
+    - !<own> 9de0ec04-e3b9-4eae-bbf1-b27c1da72d5b
     - !<own> 0fd5d707-6ae4-4c78-baa6-ad9c29a30007
     - !<own> fc319003-342c-4fe3-9829-872d61629fe0
     - !<own> cf0bc7b5-d30e-446f-a658-5287e92371f0
@@ -3184,6 +3183,22 @@
     HasSegmentScaleCompensation: false
   Children:
     - !<own> 7d4d7bc0-26e2-44df-8c5a-81c415448de4
+  Components:
+    []
+- !<SceneObject/9de0ec04-e3b9-4eae-bbf1-b27c1da72d5b>
+  PrefabRemaps:
+    []
+  Name: Group
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 4.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> f2e01819-9796-45b4-99e7-daec70501bbb
+    - !<own> 5c13ffa1-59f9-4f4a-acf6-97600f086481
   Components:
     []
 - !<RenderMeshVisual/9e1cc889-ccea-4a66-9715-ba6b14b8c720>
@@ -4278,7 +4293,7 @@
   ForceBasic: true
   Anchor:
     left: -0.850000
-    bottom: -0.120000
+    bottom: -3.380000
     right: 0.850000
     top: 0.040000
   Offset:
