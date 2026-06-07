@@ -994,6 +994,22 @@
     - !<own> bb55a663-0e33-4b32-b70a-508a11e41bde
   Components:
     []
+- !<SceneObject/26d502ad-628f-4dd5-bff2-a843e1b2c375>
+  PrefabRemaps:
+    []
+  Name: Group
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: -2.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> fef19eae-182b-4ac9-b034-d62b51b2ccce
+    - !<own> e7595fc4-8475-4ad4-b7a2-a2bc3fb9761a
+  Components:
+    []
 - !<SceneObject/28e30bb9-2b41-48f5-8a57-a1c1f7843e8c>
   PrefabRemaps:
     []
@@ -1612,7 +1628,7 @@
   PrefabRemaps:
     []
   Name: PanelHome
-  Enabled: false
+  Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
@@ -1620,10 +1636,8 @@
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
-    - !<own> 2327a9c9-cb24-4061-b19b-252c3208d2ec
-    - !<own> bdfd71b0-7ccf-474d-8387-c74d209bd085
-    - !<own> fef19eae-182b-4ac9-b034-d62b51b2ccce
-    - !<own> e7595fc4-8475-4ad4-b7a2-a2bc3fb9761a
+    - !<own> 8bb5fb67-f92e-475c-88ca-37c0ef74189d
+    - !<own> 26d502ad-628f-4dd5-bff2-a843e1b2c375
   Components:
     - !<own> c7d8e9f0-a1b2-4c3d-8e4f-0123456789ab
     - !<own> ef3feae6-92e8-4bb2-8a81-5c5b86a69137
@@ -2618,6 +2632,22 @@
   Children:
     - !<own> 11feb2fc-3fd3-485e-ae59-7a6420cc9d7c
     - !<own> 91f978a5-24c0-4829-971c-0fe0024d763a
+  Components:
+    []
+- !<SceneObject/8bb5fb67-f92e-475c-88ca-37c0ef74189d>
+  PrefabRemaps:
+    []
+  Name: Group 1
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    - !<own> 2327a9c9-cb24-4061-b19b-252c3208d2ec
+    - !<own> bdfd71b0-7ccf-474d-8387-c74d209bd085
   Components:
     []
 - !<Image/8e97bc7b-b92a-439d-b5f8-51101e77e645>
@@ -4025,9 +4055,9 @@
     pinToBottom: true
     fixedWidth: false
     fixedHeight: false
-    deactivatedFixedSprite: false
-    deactivatedFixedPivot: false
-  Pivot: {x: 1.500000, y: 0.500000}
+    deactivatedFixedSprite: true
+    deactivatedFixedPivot: true
+  Pivot: {x: 0.800000, y: 0.000000}
   Transform:
     position: {x: 0.000000, y: 0.000000, z: 0.000000}
     rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
@@ -4036,15 +4066,15 @@
   RawMode: true
   ForceBasic: false
   Anchor:
-    left: -0.000000
-    bottom: 0.000000
-    right: 0.500000
-    top: 0.500000
-  Offset:
     left: 0.000000
     bottom: 0.000000
     right: 0.000000
     top: 0.000000
+  Offset:
+    left: 0.080000
+    bottom: 0.480000
+    right: 0.920000
+    top: 0.620000
 - !<ScriptComponent/cdfb4c26-94a0-4304-9e16-0b8a208bdaf3>
   PrefabRemaps:
     []
@@ -4589,7 +4619,7 @@
     []
   Name: Device Tracking
   Enabled: true
-  DeviceTrackingMode: World
+  DeviceTrackingMode: Rotation
   RotationOptions: !<RotationOptions>
     InvertRotation: false
   SurfaceOptions: !<SurfaceOptions>
@@ -4651,7 +4681,7 @@
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 5.000000, y: 5.000000, z: 5.000000}
+    Scale: {x: 10.000000, y: 10.000000, z: 10.000000}
     HasSegmentScaleCompensation: false
   Children:
     []
@@ -4854,24 +4884,24 @@
     fixedHeight: false
     deactivatedFixedSprite: false
     deactivatedFixedPivot: false
-  Pivot: {x: 0.500000, y: 0.500000}
+  Pivot: {x: -0.800000, y: 0.000000}
   Transform:
     position: {x: 0.000000, y: 0.000000, z: 0.000000}
     rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    scale: {x: 5.000000, y: 5.000000, z: 5.000000}
+    scale: {x: 10.000000, y: 10.000000, z: 10.000000}
     hasSegmentScaleCompensation: false
   RawMode: true
   ForceBasic: false
   Anchor:
-    left: 0.500000
-    bottom: 0.000000
-    right: 1.000000
-    top: 0.500000
-  Offset:
     left: 0.000000
-    bottom: 0.000000
+    bottom: -0.000000
     right: 0.000000
     top: 0.000000
+  Offset:
+    left: 0.080000
+    bottom: 0.480000
+    right: 0.920000
+    top: 0.620000
 - !<SceneObject/f2e01819-9796-45b4-99e7-daec70501bbb>
   PrefabRemaps:
     []
