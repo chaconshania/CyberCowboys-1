@@ -2,7 +2,8 @@
  * GameButton.ts — Lens Studio 5.x / Spectacles 2024
  *
  * Interactive UI button with idle, hover, pressed, and optional active states.
- * Attach to the same SceneObject as Interactable + PinchButton.
+ * Attach to the button visual object. Interactable + PinchButton + Collider
+ * can live on a child named "HitTarget" when using pivot-split layouts.
  *
  * Expects an Image component on this object (or buttonImage input).
  * Clones the Image material so each button tints independently.
@@ -120,7 +121,6 @@ export class GameButton extends BaseScriptComponent {
   private animToken      : number = 0;
 
   onAwake() {
-    this.ensureCollider();
     this.createEvent('TouchStartEvent').bind(() => this.onTouchStart());
     this.createEvent('TouchEndEvent').bind(() => this.onTouchEnd());
     this.createEvent('OnStartEvent').bind(() => this.init());
@@ -163,14 +163,38 @@ export class GameButton extends BaseScriptComponent {
     this.buttonMaterial = sourceMaterial.clone();
     this.image.mainMaterial = this.buttonMaterial;
 
-    this.interactable = this.getSceneObject().getComponent(Interactable.getTypeName()) as Interactable;
+    this.interactable = this.findInteractable();
     if (!this.interactable) {
       print('GameButton: Interactable required on ' + this.getSceneObject().name);
       return;
     }
 
     this.bindInteractable(this.interactable);
+    this.setupHitTarget();
     this.applyVisualState(this.resolveVisualState(), true);
+  }
+
+  private findInteractable(): Interactable | null {
+    const hitTarget = this.getHitTargetChild();
+    if (hitTarget) {
+      const onChild = hitTarget.getComponent(Interactable.getTypeName()) as Interactable;
+      if (onChild) {
+        return onChild;
+      }
+    }
+    return this.getSceneObject().getComponent(Interactable.getTypeName()) as Interactable;
+  }
+
+  private getHitTargetChild(): SceneObject | null {
+    const parent = this.getSceneObject();
+    const childCount = parent.getChildrenCount();
+    for (let i = 0; i < childCount; i++) {
+      const child = parent.getChild(i);
+      if (child.name === 'HitTarget') {
+        return child;
+      }
+    }
+    return null;
   }
 
   private bindInteractable(interactable: Interactable) {
@@ -316,8 +340,51 @@ export class GameButton extends BaseScriptComponent {
     }
   }
 
-  private ensureCollider() {
-    const obj = this.getSceneObject();
+  private setupHitTarget() {
+    const parent = this.getSceneObject();
+    const hitTarget = this.getHitTargetChild();
+    const colliderObject = hitTarget || parent;
+
+    this.removeColliders(parent);
+
+    const st = this.screenTransform
+      || parent.getComponent('Component.ScreenTransform') as ScreenTransform;
+    const usesSplitHit = !!st && Math.abs(st.pivot.x) > 0.05;
+
+    if (usesSplitHit && hitTarget) {
+      this.positionSplitHitTarget(hitTarget, st);
+      const fullSize = this.getScreenTransformColliderSize(st, parent);
+      this.applyCollider(colliderObject, new vec3(
+        fullSize.x * 0.5,
+        fullSize.y,
+        fullSize.z,
+      ));
+      return;
+    }
+
+    if (hitTarget) {
+      hitTarget.getTransform().setLocalPosition(new vec3(0, 0, 0));
+    }
+
+    this.applyCollider(colliderObject, this.getColliderSize(st, parent));
+  }
+
+  private positionSplitHitTarget(hitTarget: SceneObject, st: ScreenTransform) {
+    const isLeftVisual = st.pivot.x > 0;
+    const localHitCenter = new vec2(isLeftVisual ? -0.5 : 0.5, 0);
+    const worldHitCenter = st.localPointToWorldPoint(localHitCenter);
+    const worldRectCenter = st.localPointToWorldPoint(new vec2(0, 0));
+    const worldOffset = worldHitCenter.sub(worldRectCenter);
+    const parentScale = this.getSceneObject().getTransform().getLocalScale();
+
+    hitTarget.getTransform().setLocalPosition(new vec3(
+      worldOffset.x / Math.max(Math.abs(parentScale.x), 0.001),
+      worldOffset.y / Math.max(Math.abs(parentScale.y), 0.001),
+      worldOffset.z / Math.max(Math.abs(parentScale.z), 0.001),
+    ));
+  }
+
+  private applyCollider(obj: SceneObject, size: vec3) {
     let colliders = obj.getComponents('Physics.ColliderComponent') as ColliderComponent[];
     if (colliders.length === 0) {
       colliders = obj.getComponents('Component.ColliderComponent') as ColliderComponent[];
@@ -326,19 +393,55 @@ export class GameButton extends BaseScriptComponent {
       ? colliders[0]
       : obj.createComponent('Physics.ColliderComponent') as ColliderComponent;
 
-    const size = this.getColliderSize();
     const shape = Shape.createBoxShape();
     shape.size = new vec3(size.x, size.y, size.z);
     collider.shape = shape;
     collider.intangible = false;
   }
 
-  private getColliderSize(): vec3 {
+  private removeColliders(obj: SceneObject) {
+    const physicsColliders = obj.getComponents('Physics.ColliderComponent') as ColliderComponent[];
+    const legacyColliders = obj.getComponents('Component.ColliderComponent') as ColliderComponent[];
+    [...physicsColliders, ...legacyColliders].forEach((collider) => {
+      collider.enabled = false;
+    });
+  }
+
+  private getColliderSize(st: ScreenTransform | null, parent: SceneObject): vec3 {
     if (this.colliderSize && this.colliderSize.x > 0 && this.colliderSize.y > 0) {
       return new vec3(this.colliderSize.x, this.colliderSize.y, this.colliderDepth);
     }
 
+    if (st) {
+      const fromScreenTransform = this.getScreenTransformColliderSize(st, parent);
+      if (fromScreenTransform) {
+        return fromScreenTransform;
+      }
+    }
+
     return this.estimateColliderSize();
+  }
+
+  private getScreenTransformColliderSize(st: ScreenTransform, parent: SceneObject): vec3 | null {
+    const bottomLeft = st.localPointToWorldPoint(new vec2(-1, -1));
+    const bottomRight = st.localPointToWorldPoint(new vec2(1, -1));
+    const topLeft = st.localPointToWorldPoint(new vec2(-1, 1));
+
+    const worldWidth = bottomRight.distance(bottomLeft);
+    const worldHeight = topLeft.distance(bottomLeft);
+    if (worldWidth <= 0 || worldHeight <= 0) {
+      return null;
+    }
+
+    const objScale = parent.getTransform().getLocalScale();
+    const safeScaleX = Math.max(Math.abs(objScale.x), 0.001);
+    const safeScaleY = Math.max(Math.abs(objScale.y), 0.001);
+
+    return new vec3(
+      worldWidth / safeScaleX,
+      worldHeight / safeScaleY,
+      this.colliderDepth,
+    );
   }
 
   private estimateColliderSize(): vec3 {

@@ -3596,6 +3596,23 @@
     - !<own> eea2ab9f-cb15-4f5c-a94b-bc5b51f86dc2
   Components:
     []
+- !<SceneObject/b8c9d0e1-2345-4abc-9def-012345678901>
+  PrefabRemaps:
+    []
+  Name: HitTarget
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> b3c4d5e6-f7a8-4901-c234-567890bcdefa
+    - !<own> ac9031c9-7401-422a-9bfb-0e2b28a6dccd
+    - !<own> b6214537-f3bc-42cd-987d-3961a4290cc0
 - !<Image/b94a9fa2-40d2-4793-8a51-f65d2e46526e>
   PrefabRemaps:
     []
@@ -3965,6 +3982,23 @@
     - !<own> 06837343-42d7-4821-ad4f-1030c41fe1e2
   Components:
     []
+- !<SceneObject/c7d8e9f0-1234-4abc-9def-012345678902>
+  PrefabRemaps:
+    []
+  Name: HitTarget
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> a2b3c4d5-e6f7-4890-b123-456789abcdef
+    - !<own> 4d05aa69-ef5d-453d-ad39-fe3765b4adab
+    - !<own> a1f0ac0a-c789-4c0f-a553-5de72e03f717
 - !<ScriptComponent/c7d8e9f0-a1b2-4c3d-8e4f-0123456789ab>
   PrefabRemaps:
     []
@@ -4684,13 +4718,10 @@
     Scale: {x: 10.000000, y: 10.000000, z: 10.000000}
     HasSegmentScaleCompensation: false
   Children:
-    []
+    - !<own> c7d8e9f0-1234-4abc-9def-012345678902
   Components:
     - !<own> f2a3b4c5-d6e7-4890-a123-456789abcd01
     - !<own> cb072f97-a933-416e-b37e-0bb68808097a
-    - !<own> a2b3c4d5-e6f7-4890-b123-456789abcdef
-    - !<own> 4d05aa69-ef5d-453d-ad39-fe3765b4adab
-    - !<own> a1f0ac0a-c789-4c0f-a553-5de72e03f717
     - !<own> d3e4f5a6-b7c8-4d9e-8f0a-1b2c3d4e5f60
 - !<SceneObject/e8528eee-00c7-4b80-bf65-a00a57ff53fd>
   PrefabRemaps:
@@ -5053,13 +5084,10 @@
     Scale: {x: 10.000000, y: 10.000000, z: 10.000000}
     HasSegmentScaleCompensation: false
   Children:
-    []
+    - !<own> b8c9d0e1-2345-4abc-9def-012345678901
   Components:
     - !<own> cd93c3f2-6e13-4b20-8b22-cf6057f50993
     - !<own> 9658e4d7-3df1-4916-b238-96320dcb3031
-    - !<own> b3c4d5e6-f7a8-4901-c234-567890bcdefa
-    - !<own> ac9031c9-7401-422a-9bfb-0e2b28a6dccd
-    - !<own> b6214537-f3bc-42cd-987d-3961a4290cc0
     - !<own> e4f5a6b7-c8d9-4e0f-9a1b-2c3d4e5f6071
 - !<SceneObject/ff15cd8f-9019-445e-8265-d5c576569c32>
   PrefabRemaps:
