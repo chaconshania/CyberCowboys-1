@@ -108,7 +108,6 @@ export class GameButton extends BaseScriptComponent {
   pressHandlerMethod: string;
 
   private interactable       : Interactable | null = null;
-  private touchActive        : boolean = false;
   private image              : Image | null = null;
   private buttonMaterial     : Material | null = null;
   private screenTransform    : ScreenTransform | null = null;
@@ -121,8 +120,6 @@ export class GameButton extends BaseScriptComponent {
   private animToken      : number = 0;
 
   onAwake() {
-    this.createEvent('TouchStartEvent').bind(() => this.onTouchStart());
-    this.createEvent('TouchEndEvent').bind(() => this.onTouchEnd());
     this.createEvent('OnStartEvent').bind(() => this.init());
     this.createEvent('OnEnableEvent').bind(() => {
       if (this.isInitialized()) this.applyVisualState(this.resolveVisualState(), true);
@@ -308,36 +305,6 @@ export class GameButton extends BaseScriptComponent {
 
   private isInitialized(): boolean {
     return this.buttonMaterial !== null;
-  }
-
-  private onTouchStart() {
-    if (this.isDisabled) return;
-    this.touchActive = true;
-    this.isHovered = true;
-    this.isPressed = true;
-    if (this.isInitialized()) {
-      this.applyVisualState('pressed', false);
-    }
-    this.invokePressHandler();
-  }
-
-  private onTouchEnd() {
-    if (!this.touchActive) return;
-    this.touchActive = false;
-    this.isPressed = false;
-    this.isHovered = false;
-    if (this.isInitialized()) {
-      this.applyVisualState('idle', false);
-    }
-  }
-
-  private invokePressHandler() {
-    if (!this.pressHandler || !this.pressHandlerMethod) return;
-    const handler = this.pressHandler as any;
-    const fn = handler[this.pressHandlerMethod];
-    if (typeof fn === 'function') {
-      fn.call(handler);
-    }
   }
 
   private setupHitTarget() {
