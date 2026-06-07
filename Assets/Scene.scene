@@ -346,17 +346,19 @@
   PrefabRemaps:
     []
   Name: BtnUndoCorner
-  Enabled: false
+  Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    Scale: {x: 10.000000, y: 10.000000, z: 10.000000}
     HasSegmentScaleCompensation: false
   Children:
-    []
+    - !<own> c4444441-4444-4444-a444-444444444401
   Components:
     - !<own> 7e125040-0615-4fd6-bd88-abb9c592be24
+    - !<own> 1a111101-1111-4111-a111-111111111101
+    - !<own> 1a111102-1111-4111-a111-111111111102
 - !<Text/118a17b1-db21-4d35-9ecd-4d0fb364ba6a>
   PrefabRemaps:
     []
@@ -682,6 +684,129 @@
     - !<own> efcbf3fa-d2cf-4ba4-85ac-3088e737f5aa
   Components:
     []
+- !<ScreenTransform/1a111101-1111-4111-a111-111111111101>
+  PrefabRemaps:
+    []
+  Name: Screen Transform
+  Enabled: true
+  IsAdvanced: true
+  Constraints:
+    pinToLeft: true
+    pinToTop: true
+    pinToRight: true
+    pinToBottom: true
+    fixedWidth: false
+    fixedHeight: false
+    deactivatedFixedSprite: true
+    deactivatedFixedPivot: true
+  Pivot: {x: -1.000000, y: 0.000000}
+  Transform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 10.000000, y: 10.000000, z: 10.000000}
+    hasSegmentScaleCompensation: false
+  RawMode: true
+  ForceBasic: false
+  Anchor:
+    left: -0.850000
+    bottom: -0.500000
+    right: -0.050000
+    top: -0.220000
+  Offset:
+    left: 0.000000
+    bottom: 0.000000
+    right: 0.000000
+    top: 0.000000
+- !<ScriptComponent/1a111102-1111-4111-a111-111111111102>
+  PrefabRemaps:
+    []
+  Name: GameButton
+  Enabled: true
+  ScriptAsset: !<reference> e0b0592c-674b-4969-85e5-a966fe6dc505
+  ScriptInputsDefault:
+    buttonImage: true
+    visualRoot: true
+    supportsActiveState: true
+    hoverScale: true
+    pressedScale: true
+    animationDuration: true
+    colliderSize: true
+    pressHandler: true
+    pressHandlerMethod: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      buttonStyle: !<float> 1.000000
+      buttonImage: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      visualRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      supportsActiveState: false
+      hoverScale: 1.040000
+      pressedScale: 0.960000
+      animationDuration: 0.120000
+      colliderSize: !<Vec3> {x: 0.000000, y: 0.000000, z: 0.000000}
+      colliderDepth: !<float> 5.000000
+      pressHandler: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      pressHandlerMethod: ""
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/1a111103-1111-4111-a111-111111111103>
+  PrefabRemaps:
+    []
+  Name: Interactable
+  Enabled: true
+  ScriptAsset: !<reference> 652e631a-22d0-4941-9f74-2943df59f34c
+  ScriptInputsDefault:
+    targetingVisual: true
+    ignoreInteractionPlane: true
+    keepHoverOnTrigger: true
+    enableInstantDrag: true
+    isScrollable: true
+    allowMultipleInteractors: true
+    enablePokeDirectionality: true
+    acceptableXDirections: true
+    acceptableYDirections: true
+    acceptableZDirections: true
+    useFilteredPinch: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      targetingMode: !<float> 7.000000
+      targetingVisual: !<float> 1.000000
+      ignoreInteractionPlane: false
+      keepHoverOnTrigger: false
+      enableInstantDrag: false
+      isScrollable: false
+      allowMultipleInteractors: true
+      enablePokeDirectionality: false
+      acceptableXDirections: !<float> 0.000000
+      acceptableYDirections: !<float> 0.000000
+      acceptableZDirections: !<float> 1.000000
+      useFilteredPinch: false
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/1a111104-1111-4111-a111-111111111104>
+  PrefabRemaps:
+    []
+  Name: PinchButton
+  Enabled: true
+  ScriptAsset: !<reference> a54c5722-d3fb-4aa5-97ff-f7425978bc59
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      editEventCallbacks: true
+      customFunctionForOnButtonPinched: !<reference.ScriptComponent> bc8d2317-1bf8-4347-a9db-97c7c58cb018
+      onButtonPinchedFunctionNames: !<string[]>
+        - onBtnUndoCorner
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/1c2dd8d1-d738-4ebc-a139-afb88dc2d4e0>
   PrefabRemaps:
     []
@@ -1025,6 +1150,130 @@
     - !<own> aaa3b16e-b454-4d2b-b66e-e026481b96fc
   Components:
     []
+- !<ScreenTransform/2a222201-2222-4222-a222-222222222201>
+  PrefabRemaps:
+    []
+  Name: Screen Transform
+  Enabled: true
+  IsAdvanced: true
+  Constraints:
+    pinToLeft: true
+    pinToTop: true
+    pinToRight: true
+    pinToBottom: true
+    fixedWidth: false
+    fixedHeight: false
+    deactivatedFixedSprite: true
+    deactivatedFixedPivot: true
+  Pivot: {x: 0.600000, y: 0.000000}
+  Transform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 10.000000, y: 10.000000, z: 10.000000}
+    hasSegmentScaleCompensation: false
+  RawMode: true
+  ForceBasic: false
+  Anchor:
+    left: 0.050000
+    bottom: -0.500000
+    right: 0.850000
+    top: -0.220000
+  Offset:
+    left: 0.000000
+    bottom: 0.000000
+    right: 0.000000
+    top: 0.000000
+- !<ScriptComponent/2a222202-2222-4222-a222-222222222202>
+  PrefabRemaps:
+    []
+  Name: GameButton
+  Enabled: true
+  ScriptAsset: !<reference> e0b0592c-674b-4969-85e5-a966fe6dc505
+  ScriptInputsDefault:
+    buttonStyle: true
+    buttonImage: true
+    visualRoot: true
+    supportsActiveState: true
+    hoverScale: true
+    pressedScale: true
+    animationDuration: true
+    colliderSize: true
+    pressHandler: true
+    pressHandlerMethod: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      buttonStyle: !<float> 0.000000
+      buttonImage: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      visualRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      supportsActiveState: false
+      hoverScale: 1.040000
+      pressedScale: 0.960000
+      animationDuration: 0.120000
+      colliderSize: !<Vec3> {x: 0.000000, y: 0.000000, z: 0.000000}
+      colliderDepth: !<float> 5.000000
+      pressHandler: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      pressHandlerMethod: ""
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/2a222203-2222-4222-a222-222222222203>
+  PrefabRemaps:
+    []
+  Name: Interactable
+  Enabled: true
+  ScriptAsset: !<reference> 652e631a-22d0-4941-9f74-2943df59f34c
+  ScriptInputsDefault:
+    targetingVisual: true
+    ignoreInteractionPlane: true
+    keepHoverOnTrigger: true
+    enableInstantDrag: true
+    isScrollable: true
+    allowMultipleInteractors: true
+    enablePokeDirectionality: true
+    acceptableXDirections: true
+    acceptableYDirections: true
+    acceptableZDirections: true
+    useFilteredPinch: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      targetingMode: !<float> 7.000000
+      targetingVisual: !<float> 1.000000
+      ignoreInteractionPlane: false
+      keepHoverOnTrigger: false
+      enableInstantDrag: false
+      isScrollable: false
+      allowMultipleInteractors: true
+      enablePokeDirectionality: false
+      acceptableXDirections: !<float> 0.000000
+      acceptableYDirections: !<float> 0.000000
+      acceptableZDirections: !<float> 1.000000
+      useFilteredPinch: false
+  ScriptTypes:
+    "":
+      {}
+- !<ScriptComponent/2a222204-2222-4222-a222-222222222204>
+  PrefabRemaps:
+    []
+  Name: PinchButton
+  Enabled: true
+  ScriptAsset: !<reference> a54c5722-d3fb-4aa5-97ff-f7425978bc59
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      editEventCallbacks: true
+      customFunctionForOnButtonPinched: !<reference.ScriptComponent> bc8d2317-1bf8-4347-a9db-97c7c58cb018
+      onButtonPinchedFunctionNames: !<string[]>
+        - onBtnConfirmCorners
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/2d69fee3-8257-4b17-9c7c-b6eaf47d544e>
   PrefabRemaps:
     []
@@ -1349,7 +1598,8 @@
   Enabled: true
   ScriptAsset: !<reference> 5f314c18-c512-4e13-8a5c-07e50f017034
   ScriptInputsDefault:
-    {}
+    designPlaneHeightCm: true
+    minDrawPointDistanceCm: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
@@ -1367,6 +1617,8 @@
       matPending: !<reference.Material> ed28f776-1d59-4110-9ff7-a476defc2d7a
       matCurrent: !<reference.Material> 3bcb8f25-f057-48bd-8338-3573b2fffb02
       matDone: !<reference.Material> e48c74c9-8378-4732-8137-5bebe6bcb536
+      designPlaneHeightCm: !<float> 100.000000
+      minDrawPointDistanceCm: !<float> 5.000000
   ScriptTypes:
     "":
       {}
@@ -1628,7 +1880,7 @@
   PrefabRemaps:
     []
   Name: PanelHome
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
@@ -1905,13 +2157,14 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: -3.000000, z: 0.000000}
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
     []
   Components:
+    - !<own> c3333331-3333-4333-a333-333333333312
     - !<own> 563a89e5-5407-4987-9048-41b8cd0306a2
 - !<SceneObject/5c302553-a522-42f8-94b3-9d762073958e>
   PrefabRemaps:
@@ -2366,6 +2619,8 @@
     - !<own> cf0bc7b5-d30e-446f-a658-5287e92371f0
   Components:
     - !<own> b5b7c1d5-8433-45f5-a718-9840a3fece26
+    - !<own> c3333331-3333-4333-a333-333333333301
+    - !<own> c3333331-3333-4333-a333-333333333302
 - !<SceneObject/7b60c715-5b20-40ab-82d0-16e6505b7ee2>
   PrefabRemaps:
     []
@@ -3686,6 +3941,7 @@
       txtScore: !<reference.Text> 1c3222ac-84df-4b8c-8c5b-16ee75e6cc7c
       txtFlash: !<reference.Text> d6de5f3c-acf2-403d-b4b0-bb1c177bc0d0
       btnConfirmCorners: !<reference.SceneObject> fc319003-342c-4fe3-9829-872d61629fe0
+      btnUndoCorner: !<reference.SceneObject> 0fd5d707-6ae4-4c78-baa6-ad9c29a30007
       seqChipRoot: !<reference.SceneObject> 332fa945-01b6-40eb-8896-50b50982b006
       seqChipPrefab: !<reference.ObjectPrefab> 9df59e13-7eb9-402d-9c0c-5cc85ac82bd4
       rideChipRoot: !<reference.SceneObject> 332fa945-01b6-40eb-8896-50b50982b006
@@ -3912,6 +4168,159 @@
     []
   Components:
     - !<own> a8e11345-6b71-456d-8cfe-5e407eed5f2a
+- !<ScreenTransform/c3333331-3333-4333-a333-333333333301>
+  PrefabRemaps:
+    []
+  Name: Screen Transform
+  Enabled: true
+  IsAdvanced: false
+  Constraints:
+    pinToLeft: false
+    pinToTop: false
+    pinToRight: false
+    pinToBottom: false
+    fixedWidth: false
+    fixedHeight: false
+    deactivatedFixedSprite: false
+    deactivatedFixedPivot: false
+  Pivot: {x: 0.000000, y: 0.000000}
+  Transform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    hasSegmentScaleCompensation: false
+  RawMode: true
+  ForceBasic: true
+  Anchor:
+    left: -1.000000
+    bottom: -1.000000
+    right: 1.000000
+    top: 1.000000
+  Offset:
+    left: 0.000000
+    bottom: 0.000000
+    right: 0.000000
+    top: 0.000000
+- !<ScriptComponent/c3333331-3333-4333-a333-333333333302>
+  PrefabRemaps:
+    []
+  Name: InteractionPlane
+  Enabled: true
+  ScriptAsset: !<reference> 7086d3b2-7004-4ea9-8675-7df51dbe3b82
+  ScriptInputsDefault:
+    _offset: true
+    targetingVisual: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      _planeSize: !<Vec2> {x: 50.000000, y: 40.000000}
+      _offset: !<Vec3> {x: 0.000000, y: 0.000000, z: 0.000000}
+      targetingVisual: !<float> 1.000000
+  ScriptTypes:
+    "":
+      {}
+- !<ScreenTransform/c3333331-3333-4333-a333-333333333311>
+  PrefabRemaps:
+    []
+  Name: Screen Transform
+  Enabled: true
+  IsAdvanced: false
+  Constraints:
+    pinToLeft: false
+    pinToTop: false
+    pinToRight: false
+    pinToBottom: false
+    fixedWidth: false
+    fixedHeight: false
+    deactivatedFixedSprite: false
+    deactivatedFixedPivot: false
+  Pivot: {x: 0.000000, y: 0.000000}
+  Transform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    hasSegmentScaleCompensation: false
+  RawMode: true
+  ForceBasic: true
+  Anchor:
+    left: -0.850000
+    bottom: 0.080000
+    right: 0.850000
+    top: 0.420000
+  Offset:
+    left: 0.000000
+    bottom: 0.000000
+    right: 0.000000
+    top: 0.000000
+- !<ScreenTransform/c3333331-3333-4333-a333-333333333312>
+  PrefabRemaps:
+    []
+  Name: Screen Transform
+  Enabled: true
+  IsAdvanced: false
+  Constraints:
+    pinToLeft: false
+    pinToTop: false
+    pinToRight: false
+    pinToBottom: false
+    fixedWidth: false
+    fixedHeight: false
+    deactivatedFixedSprite: false
+    deactivatedFixedPivot: false
+  Pivot: {x: 0.000000, y: 0.000000}
+  Transform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    hasSegmentScaleCompensation: false
+  RawMode: true
+  ForceBasic: true
+  Anchor:
+    left: -0.850000
+    bottom: -0.120000
+    right: 0.850000
+    top: 0.040000
+  Offset:
+    left: 0.000000
+    bottom: 0.000000
+    right: 0.000000
+    top: 0.000000
+- !<SceneObject/c4444441-4444-4444-a444-444444444401>
+  PrefabRemaps:
+    []
+  Name: HitTarget
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> c4444441-4444-4444-a444-444444444402
+    - !<own> 1a111104-1111-4111-a111-111111111104
+    - !<own> 1a111103-1111-4111-a111-111111111103
+- !<ColliderComponent/c4444441-4444-4444-a444-444444444402>
+  PrefabRemaps:
+    []
+  Name: Physics Collider
+  Enabled: true
+  Shape: !<Box>
+    FitVisual: false
+    Size: {x: 2.000000, y: 0.500000, z: 5.000000}
+  Matter: !<reference> 00000000-0000-0000-0000-000000000000
+  Filter: !<reference> 00000000-0000-0000-0000-000000000000
+  OverlapFilter: !<reference> 00000000-0000-0000-0000-000000000000
+  WorldSettings: !<reference> 00000000-0000-0000-0000-000000000000
+  EnableSmoothing: false
+  PositionTension: 30.000000
+  RotationTension: 30.000000
+  ForceCompound: false
+  Intangible: false
+  ShowCollider: false
 - !<SceneObject/c4af073a-5f2c-493c-a60f-528a02359b08>
   PrefabRemaps:
     []
@@ -3944,6 +4353,41 @@
   ScriptTypes:
     "":
       {}
+- !<SceneObject/c5555551-5555-4555-a555-555555555501>
+  PrefabRemaps:
+    []
+  Name: HitTarget
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> c5555551-5555-4555-a555-555555555502
+    - !<own> 2a222204-2222-4222-a222-222222222204
+    - !<own> 2a222203-2222-4222-a222-222222222203
+- !<ColliderComponent/c5555551-5555-4555-a555-555555555502>
+  PrefabRemaps:
+    []
+  Name: Physics Collider
+  Enabled: true
+  Shape: !<Box>
+    FitVisual: false
+    Size: {x: 2.000000, y: 0.500000, z: 5.000000}
+  Matter: !<reference> 00000000-0000-0000-0000-000000000000
+  Filter: !<reference> 00000000-0000-0000-0000-000000000000
+  OverlapFilter: !<reference> 00000000-0000-0000-0000-000000000000
+  WorldSettings: !<reference> 00000000-0000-0000-0000-000000000000
+  EnableSmoothing: false
+  PositionTension: 30.000000
+  RotationTension: 30.000000
+  ForceCompound: false
+  Intangible: false
+  ShowCollider: false
 - !<RenderMeshVisual/c6ad64c8-8d04-406f-b739-c6558a811578>
   PrefabRemaps:
     []
@@ -4101,7 +4545,7 @@
   RawMode: true
   ForceBasic: false
   Anchor:
-    left: -0.850000
+    left: -0.870000
     bottom: -0.360000
     right: 0.850000
     top: -0.160000
@@ -4283,7 +4727,7 @@
   PrefabRemaps:
     []
   Name: BtnCalibrateHome
-  Enabled: false
+  Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
@@ -4941,13 +5385,14 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: 3.000000, z: 0.000000}
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
     []
   Components:
+    - !<own> c3333331-3333-4333-a333-333333333311
     - !<own> 118a17b1-db21-4d35-9ecd-4d0fb364ba6a
 - !<ScreenTransform/f5e6d7c8-9abc-4def-8765-432109876543>
   PrefabRemaps:
@@ -5076,17 +5521,19 @@
   PrefabRemaps:
     []
   Name: BtnConfirmCorners
-  Enabled: false
+  Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    Scale: {x: 10.000000, y: 10.000000, z: 10.000000}
     HasSegmentScaleCompensation: false
   Children:
-    []
+    - !<own> c5555551-5555-4555-a555-555555555501
   Components:
     - !<own> 5f6e2c72-1317-48b7-80d9-00cbbb2dae27
+    - !<own> 2a222201-2222-4222-a222-222222222201
+    - !<own> 2a222202-2222-4222-a222-222222222202
 - !<SceneObject/feb8dee5-495e-46be-8805-5ff9ff61a9c5>
   PrefabRemaps:
     []

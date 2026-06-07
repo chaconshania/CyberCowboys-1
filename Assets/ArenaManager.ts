@@ -5,12 +5,13 @@
 // @ts-ignore
 const WorldQuery = require('LensStudio:WorldQueryModule');
 
-// SIK stubbed out — hand tracking disabled for preview/testing
-const SIK_Module = null;
+import { HandInputData } from 'SpectaclesInteractionKit.lspkg/Providers/HandInputData/HandInputData';
+import WorldCameraFinderProvider from 'SpectaclesInteractionKit.lspkg/Providers/CameraProvider/WorldCameraFinderProvider';
 
 export enum Phase {
   Home      = 'HOME',
   Calibrate = 'CALIBRATE',
+  DrawPath  = 'DRAW_PATH',
   Design    = 'DESIGN',
   Ride      = 'RIDE',
 }
@@ -125,12 +126,16 @@ export class ArenaManager extends BaseScriptComponent {
   @input matCurrent         : Material;
   @input matDone            : Material;
 
+  @input designPlaneHeightCm: number = 100;
+  @input minDrawPointDistanceCm: number = 5;
+
   private phase         : Phase      = Phase.Home;
   private designTool    : DesignTool = DesignTool.Path;
   private pendingPreset : PresetCourse | null = null;
 
   private corners       : vec3[]        = [];
   private cornerMarkers : SceneObject[] = [];
+  private fenceSegments : SceneObject[] = [];
   private hitTestSession: any;
 
   private arenaCenter   : vec3 = vec3.zero();
@@ -149,10 +154,19 @@ export class ArenaManager extends BaseScriptComponent {
 
   private updateEvent   : SceneEvent;
   private pinchDetected : boolean = false;
+  private lastDrawPos   : vec3 | null = null;
+  private handProvider  : HandInputData | null = null;
 
   onAwake() {
     try {
       this.hitTestSession = WorldQuery.createHitTestSessionWithConfig({ filter: 1 });
+      if (this.hitTestSession?.start) {
+        this.hitTestSession.start();
+      }
+    } catch (e) {}
+
+    try {
+      this.handProvider = HandInputData.getInstance();
     } catch (e) {}
 
     this.updateEvent = this.createEvent('UpdateEvent');
@@ -163,35 +177,157 @@ export class ArenaManager extends BaseScriptComponent {
   }
 
   private onUpdate() {
+    this.updateHandInput();
+
+    if (this.phase === Phase.Ride) {
+      this.rideUpdate();
+    }
+  }
+
+  private updateHandInput() {
+    const hand = this.getDominantHand();
+    if (!hand) {
+      return;
+    }
+
     try {
-      if (SIK_Module) {
-        const SIK  = (SIK_Module as any).SIK;
-        const hand = SIK.HandInputData.getDominantHand();
-        const isPinching = hand.isPinching();
-        if (isPinching && !this.pinchDetected) {
-          this.pinchDetected = true;
-          this.onPinch(hand);
-        } else if (!isPinching) {
-          this.pinchDetected = false;
+      const isPinching = hand.isPinching();
+
+      if (this.phase === Phase.DrawPath) {
+        if (isPinching) {
+          this.sampleAirDrawPoint(hand);
+        } else {
+          this.lastDrawPos = null;
+        }
+        return;
+      }
+
+      if (isPinching && !this.pinchDetected) {
+        this.pinchDetected = true;
+        this.onPinch(hand);
+      } else if (!isPinching) {
+        this.pinchDetected = false;
+      }
+    } catch (e) {}
+  }
+
+  private getDominantHand(): any | null {
+    if (!this.handProvider) {
+      return null;
+    }
+
+    try {
+      const provider = this.handProvider as any;
+      if (typeof provider.getDominantHand === 'function') {
+        return provider.getDominantHand();
+      }
+      if (typeof provider.getHand === 'function') {
+        const right = provider.getHand('right');
+        if (right?.isTracked?.()) {
+          return right;
+        }
+        const left = provider.getHand('left');
+        if (left?.isTracked?.()) {
+          return left;
         }
       }
     } catch (e) {}
 
-    if (this.phase === Phase.Ride) this.rideUpdate();
+    return null;
   }
 
   private onPinch(hand: any) {
-    if (this.phase === Phase.Home) return;
+    if (this.phase === Phase.Home || this.phase === Phase.DrawPath) {
+      return;
+    }
+
     try {
       const pinchPos = hand.getPinchCenter();
       const downDir  = new vec3(0, -1, 0);
+      if (!this.hitTestSession) {
+        return;
+      }
+
       this.hitTestSession.hitTest(pinchPos, pinchPos.add(downDir), (result: any) => {
-        if (!result) return;
+        if (!result) {
+          return;
+        }
         const worldPos = result.position;
-        if (this.phase === Phase.Calibrate) this.calibrateAddCorner(worldPos);
-        else if (this.phase === Phase.Design) this.designHandlePinch(worldPos);
+        if (this.phase === Phase.Calibrate) {
+          this.calibrateAddCorner(worldPos);
+        } else if (this.phase === Phase.Design) {
+          this.designHandlePinch(worldPos);
+        }
       });
     } catch (e) {}
+  }
+
+  private sampleAirDrawPoint(hand: any) {
+    const pinchPos = hand.getPinchCenter();
+    const cameraPos = this.getCameraWorldPosition();
+    if (!cameraPos) {
+      return;
+    }
+
+    const rayDir = pinchPos.sub(cameraPos);
+    if (rayDir.length < 0.001) {
+      return;
+    }
+
+    const hit = this.intersectRayWithPlane(
+      cameraPos,
+      rayDir.normalize(),
+      this.getDesignPlanePoint(),
+      this.arenaNormal,
+    );
+    if (!hit) {
+      return;
+    }
+
+    const onArena = this.projectOntoArenaPlane(hit);
+    if (this.lastDrawPos && onArena.distance(this.lastDrawPos) < this.minDrawPointDistanceCm) {
+      return;
+    }
+
+    this.addPathPoint(onArena);
+    this.lastDrawPos = onArena;
+  }
+
+  private getCameraWorldPosition(): vec3 | null {
+    try {
+      const cameraProvider = WorldCameraFinderProvider.getInstance() as any;
+      const camComponent = cameraProvider.getComponent
+        ? cameraProvider.getComponent('Component.Camera')
+        : null;
+      if (camComponent) {
+        return camComponent.getTransform().getWorldPosition();
+      }
+    } catch (e) {}
+
+    return null;
+  }
+
+  private getDesignPlanePoint(): vec3 {
+    return this.arenaCenter.add(this.arenaNormal.uniformScale(this.designPlaneHeightCm));
+  }
+
+  private intersectRayWithPlane(
+    rayOrigin: vec3,
+    rayDir: vec3,
+    planePoint: vec3,
+    planeNormal: vec3,
+  ): vec3 | null {
+    const denom = planeNormal.dot(rayDir);
+    if (Math.abs(denom) < 1e-5) {
+      return null;
+    }
+
+    const t = planeNormal.dot(planePoint.sub(rayOrigin)) / denom;
+    if (t < 0) {
+      return null;
+    }
+
+    return rayOrigin.add(rayDir.uniformScale(t));
   }
 
   startDrawCourse() {
@@ -214,49 +350,82 @@ export class ArenaManager extends BaseScriptComponent {
   }
 
   private calibrateAddCorner(pos: vec3) {
-    if (this.corners.length >= 4) return;
+    if (this.corners.length >= 4) {
+      return;
+    }
     this.corners.push(pos);
     const marker = this.cornerMarkerPrefab.instantiate(this.arenaRoot);
     marker.getTransform().setWorldPosition(pos);
     this.cornerMarkers.push(marker);
     this.notifyUI({ cornerCount: this.corners.length });
-    if (this.corners.length === 4) this.computeArenaPlane();
+    if (this.corners.length === 4) {
+      this.computeArenaPlane();
+    }
   }
 
   private computeArenaPlane() {
     const [a, b, c, d] = this.corners;
     this.arenaCenter = new vec3(
-      (a.x+b.x+c.x+d.x)/4,
-      (a.y+b.y+c.y+d.y)/4,
-      (a.z+b.z+c.z+d.z)/4
+      (a.x + b.x + c.x + d.x) / 4,
+      (a.y + b.y + c.y + d.y) / 4,
+      (a.z + b.z + c.z + d.z) / 4,
     );
     const diag1 = c.sub(a);
     const diag2 = d.sub(b);
     this.arenaNormal = diag1.cross(diag2).normalize();
-    if (this.arenaNormal.y < 0) this.arenaNormal = this.arenaNormal.uniformScale(-1);
+    if (this.arenaNormal.y < 0) {
+      this.arenaNormal = this.arenaNormal.uniformScale(-1);
+    }
     this.drawArenaFence();
   }
 
   private drawArenaFence() {
     const pts = [...this.corners, this.corners[0]];
-    for (let i = 0; i < pts.length - 1; i++) this.spawnSegment(pts[i], pts[i+1]);
+    for (let i = 0; i < pts.length - 1; i++) {
+      this.fenceSegments.push(this.spawnSegment(pts[i], pts[i + 1]));
+    }
   }
 
   confirmCalibration() {
-    if (this.corners.length < 4) return;
-    this.phase = Phase.Design;
+    if (this.corners.length < 4) {
+      return;
+    }
+
+    this.clearPath();
+    this.lastDrawPos = null;
+
     if (this.pendingPreset) {
+      this.phase = Phase.Design;
       this.spawnPreset(this.pendingPreset);
       this.pendingPreset = null;
+    } else {
+      this.phase = Phase.DrawPath;
     }
+
     this.notifyUI();
   }
 
+  confirmDrawPath() {
+    if (this.pathPoints.length < 2) {
+      this.notifyUI({ error: 'Draw a longer path before continuing' });
+      return;
+    }
+
+    this.phase = Phase.Design;
+    this.designTool = DesignTool.Path;
+    this.lastDrawPos = null;
+    this.notifyUI({ flash: 'Path saved' });
+  }
+
   undoCorner() {
-    if (this.corners.length === 0) return;
+    if (this.corners.length === 0) {
+      return;
+    }
     this.corners.pop();
     const m = this.cornerMarkers.pop();
-    if (m) m.destroy();
+    if (m) {
+      m.destroy();
+    }
     this.notifyUI({ cornerCount: this.corners.length });
   }
 
@@ -264,6 +433,7 @@ export class ArenaManager extends BaseScriptComponent {
     this.corners = [];
     this.cornerMarkers.forEach(m => m.destroy());
     this.cornerMarkers = [];
+    this.clearFence();
     this.phase = Phase.Calibrate;
     this.notifyUI({ cornerCount: 0 });
   }
@@ -273,6 +443,7 @@ export class ArenaManager extends BaseScriptComponent {
     this.resetCalibration();
     this.pendingPreset = null;
     this.phase = Phase.Home;
+    this.lastDrawPos = null;
     this.notifyUI();
   }
 
@@ -324,14 +495,28 @@ export class ArenaManager extends BaseScriptComponent {
     node.getTransform().setWorldPosition(pos.add(this.arenaNormal.uniformScale(0.01)));
     this.pathNodes.push(node);
     if (this.pathPoints.length >= 2) {
-      this.pathSegments.push(this.spawnSegment(this.pathPoints[this.pathPoints.length-2], pos));
+      this.pathSegments.push(this.spawnSegment(this.pathPoints[this.pathPoints.length - 2], pos));
+    }
+    if (this.phase === Phase.DrawPath) {
+      this.notifyUI({ pathPointCount: this.pathPoints.length });
     }
   }
 
   clearPath() {
     this.pathNodes.forEach(n => n.destroy());
     this.pathSegments.forEach(s => s.destroy());
-    this.pathNodes = []; this.pathSegments = []; this.pathPoints = [];
+    this.pathNodes = [];
+    this.pathSegments = [];
+    this.pathPoints = [];
+    this.lastDrawPos = null;
+    if (this.phase === Phase.DrawPath) {
+      this.notifyUI({ pathPointCount: 0 });
+    }
+  }
+
+  private clearFence() {
+    this.fenceSegments.forEach(s => s.destroy());
+    this.fenceSegments = [];
   }
 
   private addObstacleAt(type: ObstacleType, pos: vec3) {
@@ -376,7 +561,7 @@ export class ArenaManager extends BaseScriptComponent {
   }
 
   private reindexSequence() {
-    this.sequence.forEach((id, i) => { const o = this.obstacles.find(o => o.id === id); if (o) o.seqNum = i+1; });
+    this.sequence.forEach((id, i) => { const o = this.obstacles.find(o => o.id === id); if (o) o.seqNum = i + 1; });
     this.obstacles.forEach(o => { if (!this.sequence.includes(o.id)) o.seqNum = null; });
   }
 
@@ -403,7 +588,9 @@ export class ArenaManager extends BaseScriptComponent {
   resetDesign() {
     this.clearPath();
     this.obstacles.forEach(o => o.sceneObj.destroy());
-    this.obstacles = []; this.sequence = []; this.nextObsId = 0;
+    this.obstacles = [];
+    this.sequence = [];
+    this.nextObsId = 0;
     this.notifyUI({ obstacleCount: 0, sequence: [] });
   }
 
@@ -413,10 +600,13 @@ export class ArenaManager extends BaseScriptComponent {
       return;
     }
     this.phase = Phase.Ride;
-    this.currentSeqIdx = 0; this.score = 0;
+    this.currentSeqIdx = 0;
+    this.score = 0;
     this.obstacles.forEach(o => { o.done = false; this.setObstacleState(o, 'pending'); });
     this.highlightCurrentTarget();
-    if (this.arrowPrefab && !this.arrowObj) this.arrowObj = this.arrowPrefab.instantiate(this.arenaRoot);
+    if (this.arrowPrefab && !this.arrowObj) {
+      this.arrowObj = this.arrowPrefab.instantiate(this.arenaRoot);
+    }
     this.notifyUI({ phase: Phase.Ride, score: 0, currentIdx: 0, total: this.sequence.length });
   }
 
@@ -428,7 +618,8 @@ export class ArenaManager extends BaseScriptComponent {
   }
 
   resetRide() {
-    this.currentSeqIdx = 0; this.score = 0;
+    this.currentSeqIdx = 0;
+    this.score = 0;
     this.obstacles.forEach(o => { o.done = false; this.setObstacleState(o, 'pending'); });
     this.highlightCurrentTarget();
     this.notifyUI({ score: 0, currentIdx: 0 });
@@ -450,13 +641,18 @@ export class ArenaManager extends BaseScriptComponent {
     const target = this.obstacles.find(o => o.id === this.sequence[this.currentSeqIdx]);
     if (!target || target.done) return;
     if (riderPos.distance(target.worldPos) < 0.6) {
-      target.done = true; this.score++;
+      target.done = true;
+      this.score++;
       this.setObstacleState(target, 'done');
       this.currentSeqIdx++;
       this.highlightCurrentTarget();
       const finished = this.currentSeqIdx >= this.sequence.length;
-      this.notifyUI({ score: this.score, currentIdx: this.currentSeqIdx, total: this.sequence.length,
-        flash: finished ? 'Course Complete! 🏆' : '✓ Obstacle done!' });
+      this.notifyUI({
+        score: this.score,
+        currentIdx: this.currentSeqIdx,
+        total: this.sequence.length,
+        flash: finished ? 'Course Complete!' : 'Obstacle done!',
+      });
     }
   }
 
@@ -467,7 +663,7 @@ export class ArenaManager extends BaseScriptComponent {
     if (target && !target.done) this.setObstacleState(target, 'current');
   }
 
-  private setObstacleState(obs: Obstacle, state: 'pending'|'current'|'done') {
+  private setObstacleState(obs: Obstacle, state: 'pending' | 'current' | 'done') {
     const rmv = obs.sceneObj.getComponent('RenderMeshVisual') as RenderMeshVisual;
     if (!rmv) return;
     switch (state) {
@@ -499,10 +695,15 @@ export class ArenaManager extends BaseScriptComponent {
       const ui = scripts[0];
       if (ui && typeof ui.onStateChanged === 'function') {
         ui.onStateChanged({
-          phase: this.phase, cornerCount: this.corners.length,
-          tool: this.designTool, obstacleCount: this.obstacles.length,
-          sequence: this.sequence, score: this.score,
-          currentIdx: this.currentSeqIdx, total: this.sequence.length,
+          phase: this.phase,
+          cornerCount: this.corners.length,
+          tool: this.designTool,
+          obstacleCount: this.obstacles.length,
+          sequence: this.sequence,
+          score: this.score,
+          currentIdx: this.currentSeqIdx,
+          total: this.sequence.length,
+          pathPointCount: this.pathPoints.length,
           ...extra,
         });
       }

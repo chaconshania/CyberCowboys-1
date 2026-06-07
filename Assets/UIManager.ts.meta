@@ -28,6 +28,7 @@
   ScriptInputsHidden:
     arenaManagerObj: false
     btnConfirmCorners: false
+    btnUndoCorner: false
     courseCardPrefab: false
     courseCardRoot: false
     panelCalibrate: false
@@ -64,6 +65,7 @@
       txtScore: !<reference.Text> 00000000-0000-0000-0000-000000000000
       txtFlash: !<reference.Text> 00000000-0000-0000-0000-000000000000
       btnConfirmCorners: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      btnUndoCorner: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       seqChipRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
       seqChipPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
       rideChipRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
@@ -85,6 +87,7 @@
     - // @input Component.Text txtScore
     - // @input Component.Text txtFlash
     - // @input SceneObject btnConfirmCorners
+    - // @input SceneObject btnUndoCorner
     - // @input SceneObject seqChipRoot
     - // @input Asset.ObjectPrefab seqChipPrefab
     - // @input SceneObject rideChipRoot

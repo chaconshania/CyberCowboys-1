@@ -23,6 +23,7 @@ export class UIManager extends BaseScriptComponent {
   @input txtFlash         : Text;
 
   @input btnConfirmCorners: SceneObject;
+  @input btnUndoCorner    : SceneObject;
   @input seqChipRoot      : SceneObject;
   @input seqChipPrefab    : ObjectPrefab;
   @input rideChipRoot     : SceneObject;
@@ -54,8 +55,7 @@ export class UIManager extends BaseScriptComponent {
   this.updateEvent.bind(() => this.onUpdate());
 
   this.showPanel(Phase.Home);
-  if (this.btnConfirmCorners) this.btnConfirmCorners.enabled = false;
-  if (this.panelCourseList)   this.panelCourseList.enabled  = false;
+  if (this.panelCourseList) this.panelCourseList.enabled = false;
 }
 
   private onUpdate() {
@@ -77,8 +77,15 @@ export class UIManager extends BaseScriptComponent {
       this.buildCourseCards(state.presets);
       if (this.panelCourseList) this.panelCourseList.enabled = true;
     }
-    if (state.cornerCount !== undefined) this.setCornerCount(state.cornerCount);
-    if (state.tool        !== undefined) this.setInstruction(this.instructionFor(state.tool));
+    if (state.cornerCount !== undefined && this.currentPhase === Phase.Calibrate) {
+      this.setCornerCount(state.cornerCount);
+    }
+    if (state.pathPointCount !== undefined && this.currentPhase === Phase.DrawPath) {
+      this.setDrawPathInstruction(state.pathPointCount);
+    }
+    if (state.tool !== undefined && this.currentPhase === Phase.Design) {
+      this.setInstruction(this.instructionFor(state.tool));
+    }
     if (state.sequence    !== undefined) this.rebuildSeqChips(state.sequence);
     if (state.score       !== undefined && this.txtScore) this.txtScore.text = String(state.score);
     if (state.currentIdx  !== undefined && state.total !== undefined) {
@@ -91,10 +98,34 @@ export class UIManager extends BaseScriptComponent {
 
   private showPanel(phase: Phase) {
     if (this.panelHome)      this.panelHome.enabled      = phase === Phase.Home;
-    if (this.panelCalibrate) this.panelCalibrate.enabled = phase === Phase.Calibrate;
+    if (this.panelCalibrate) this.panelCalibrate.enabled = phase === Phase.Calibrate || phase === Phase.DrawPath;
     if (this.panelDesign)    this.panelDesign.enabled    = phase === Phase.Design;
     if (this.panelRide)      this.panelRide.enabled      = phase === Phase.Ride;
     if (phase !== Phase.Home && this.panelCourseList) this.panelCourseList.enabled = false;
+
+    if (this.txtCornerCount) {
+      this.txtCornerCount.getSceneObject().enabled = phase === Phase.Calibrate;
+    }
+    if (phase === Phase.DrawPath) {
+      this.setDrawPathInstruction(0);
+    } else if (phase === Phase.Calibrate) {
+      this.setButtonDisabled(this.btnConfirmCorners, true);
+      this.setButtonDisabled(this.btnUndoCorner, false);
+    }
+  }
+
+  private setButtonDisabled(btn: SceneObject | null, disabled: boolean) {
+    if (!btn) return;
+    try {
+      const scripts = btn.getAllComponents() as any[];
+      if (!scripts) return;
+      for (let i = 0; i < scripts.length; i++) {
+        if (typeof scripts[i].setDisabled === 'function') {
+          scripts[i].setDisabled(disabled);
+          return;
+        }
+      }
+    } catch (e) {}
   }
 
   private buildCourseCards(presets: PresetCourse[]) {
@@ -113,7 +144,7 @@ export class UIManager extends BaseScriptComponent {
 
   private setCornerCount(n: number) {
     if (this.txtCornerCount) this.txtCornerCount.text = n + ' / 4';
-    if (this.btnConfirmCorners) this.btnConfirmCorners.enabled = n >= 4;
+    this.setButtonDisabled(this.btnConfirmCorners, n < 4);
     const msgs = [
       'Pinch to place corner 1 of 4',
       'Pinch to place corner 2 of 4',
@@ -126,6 +157,15 @@ export class UIManager extends BaseScriptComponent {
 
   private setInstruction(msg: string) {
     if (this.txtInstruction) this.txtInstruction.text = msg;
+  }
+
+  private setDrawPathInstruction(pointCount: number) {
+    const suffix = pointCount >= 2
+      ? ' — confirm when ready'
+      : ' — need at least 2 points';
+    this.setInstruction('Pinch and drag in the air to draw your course' + suffix);
+    this.setButtonDisabled(this.btnConfirmCorners, pointCount < 2);
+    this.setButtonDisabled(this.btnUndoCorner, false);
   }
 
   private instructionFor(tool: DesignTool): string {
@@ -197,9 +237,19 @@ export class UIManager extends BaseScriptComponent {
     if (this.am) this.am.selectPreset(preset.id);
   }
 
-  onBtnUndoCorner()       { if (this.am) this.am.undoCorner();         }
+  onBtnUndoCorner() {
+    if (!this.am) return;
+    if (this.currentPhase === Phase.DrawPath) this.am.clearPath();
+    else this.am.undoCorner();
+  }
+
   onBtnResetCalibration() { if (this.am) this.am.resetCalibration();   }
-  onBtnConfirmCorners()   { if (this.am) this.am.confirmCalibration(); }
+
+  onBtnConfirmCorners() {
+    if (!this.am) return;
+    if (this.currentPhase === Phase.DrawPath) this.am.confirmDrawPath();
+    else this.am.confirmCalibration();
+  }
   onBtnCalibrateHome()    { if (this.am) this.am.goHome();             }
 
   onBtnToolPath()         { if (this.am) this.am.setDesignTool(DesignTool.Path);     }

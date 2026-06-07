@@ -30,10 +30,12 @@
     arrowPrefab: false
     conePrefab: false
     cornerMarkerPrefab: false
+    designPlaneHeightCm: false
     horseMarker: false
     matCurrent: false
     matDone: false
     matPending: false
+    minDrawPointDistanceCm: false
     pathLinePrefab: false
     pathNodePrefab: false
     polePrefab: false
@@ -61,6 +63,8 @@
       matPending: !<reference.Material> 00000000-0000-0000-0000-000000000000
       matCurrent: !<reference.Material> 00000000-0000-0000-0000-000000000000
       matDone: !<reference.Material> 00000000-0000-0000-0000-000000000000
+      designPlaneHeightCm: !<float> 100.000000
+      minDrawPointDistanceCm: !<float> 5.000000
   ScriptTypes:
     -
       {}
@@ -78,3 +82,5 @@
     - // @input Asset.Material matPending
     - // @input Asset.Material matCurrent
     - // @input Asset.Material matDone
+    - // @input float designPlaneHeightCm = 100
+    - // @input float minDrawPointDistanceCm = 5
