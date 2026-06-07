@@ -1001,7 +1001,7 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: 0.000000, y: -2.000000, z: 0.000000}
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
@@ -1400,7 +1400,7 @@
     fixedHeight: true
     deactivatedFixedSprite: false
     deactivatedFixedPivot: true
-  Pivot: {x: 0.000000, y: 20.000000}
+  Pivot: {x: 0.000000, y: 0.000000}
   Transform:
     position: {x: 0.000000, y: 0.000000, z: 0.000000}
     rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
@@ -1409,14 +1409,14 @@
   RawMode: true
   ForceBasic: false
   Anchor:
-    left: 0.000000
-    bottom: 10.000000
-    right: 0.000000
-    top: 5.000000
+    left: -0.850000
+    bottom: 0.160000
+    right: 0.850000
+    top: 0.340000
   Offset:
-    left: -1.000000
-    bottom: -2.000000
-    right: 1.000000
+    left: 0.000000
+    bottom: 0.000000
+    right: 0.000000
     top: 0.000000
 - !<Image/40484c18-7565-4701-86b9-f2566a68a188>
   PrefabRemaps:
@@ -3082,7 +3082,7 @@
   Enabled: true
   RenderOrder: 0
   StretchMode: Stretch
-  VerticalAlignment: Top
+  VerticalAlignment: Center
   HorizontalAlignment: Center
   MeshShadowMode: None
   ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
@@ -3096,9 +3096,9 @@
   Font: !<reference> a5e261ba-0b73-4b6a-9f52-1ddbb158d1bf
   LayoutRect:
     left: -7.500000
-    bottom: -2.270000
+    bottom: -1.500000
     right: 7.500000
-    top: 2.250000
+    top: 1.500000
   OverflowVertical: Overflow
   OverflowHorizontal: Overflow
   Fill: !<TextFill>
@@ -3708,6 +3708,7 @@
   Children:
     []
   Components:
+    - !<own> f5e6d7c8-9abc-4def-8765-432109876543
     - !<own> d86aecb0-ccb9-4637-b3d0-610e7eb9fbdf
 - !<Skin/be2f70d6-24b8-448b-a693-078079487f51>
   PrefabRemaps:
@@ -4100,15 +4101,15 @@
   RawMode: true
   ForceBasic: false
   Anchor:
+    left: -0.850000
+    bottom: -0.360000
+    right: 0.850000
+    top: -0.160000
+  Offset:
     left: 0.000000
     bottom: 0.000000
     right: 0.000000
     top: 0.000000
-  Offset:
-    left: 0.080000
-    bottom: 0.480000
-    right: 0.920000
-    top: 0.620000
 - !<ScriptComponent/cdfb4c26-94a0-4304-9e16-0b8a208bdaf3>
   PrefabRemaps:
     []
@@ -4557,9 +4558,9 @@
   Font: !<reference> 3cd6aa17-9280-44f5-bb75-ce98b7770c7c
   LayoutRect:
     left: -7.500000
-    bottom: -2.240000
+    bottom: -1.500000
     right: 7.500000
-    top: 5.000000
+    top: 1.500000
   OverflowVertical: Overflow
   OverflowHorizontal: Overflow
   Fill: !<TextFill>
@@ -4915,7 +4916,7 @@
     fixedHeight: false
     deactivatedFixedSprite: false
     deactivatedFixedPivot: false
-  Pivot: {x: -0.800000, y: 0.000000}
+  Pivot: {x: -0.700000, y: 0.000000}
   Transform:
     position: {x: 0.000000, y: 0.000000, z: 0.000000}
     rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
@@ -4924,15 +4925,15 @@
   RawMode: true
   ForceBasic: false
   Anchor:
+    left: -0.870000
+    bottom: -0.360000
+    right: 0.850000
+    top: -0.160000
+  Offset:
     left: 0.000000
-    bottom: -0.000000
+    bottom: 0.000000
     right: 0.000000
     top: 0.000000
-  Offset:
-    left: 0.080000
-    bottom: 0.480000
-    right: 0.920000
-    top: 0.620000
 - !<SceneObject/f2e01819-9796-45b4-99e7-daec70501bbb>
   PrefabRemaps:
     []
@@ -4948,6 +4949,39 @@
     []
   Components:
     - !<own> 118a17b1-db21-4d35-9ecd-4d0fb364ba6a
+- !<ScreenTransform/f5e6d7c8-9abc-4def-8765-432109876543>
+  PrefabRemaps:
+    []
+  Name: Screen Transform
+  Enabled: true
+  IsAdvanced: false
+  Constraints:
+    pinToLeft: false
+    pinToTop: false
+    pinToRight: false
+    pinToBottom: false
+    fixedWidth: false
+    fixedHeight: false
+    deactivatedFixedSprite: false
+    deactivatedFixedPivot: false
+  Pivot: {x: 0.000000, y: 0.000000}
+  Transform:
+    position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    hasSegmentScaleCompensation: false
+  RawMode: true
+  ForceBasic: true
+  Anchor:
+    left: -0.850000
+    bottom: -0.080000
+    right: 0.850000
+    top: 0.120000
+  Offset:
+    left: 0.000000
+    bottom: 0.000000
+    right: 0.000000
+    top: 0.000000
 - !<SceneObject/f777aaf7-adb4-4a99-95b4-a89d652b4545>
   PrefabRemaps:
     []
