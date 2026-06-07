@@ -181,8 +181,8 @@ export class UIManager extends BaseScriptComponent {
   }
 
   // ── Button callbacks ───────────────────────────────────────────────────────
-  onBtnDrawCourse()     { if (this.am) this.am.startDrawCourse();   }
-  onBtnChooseCourse()   { if (this.am) this.am.openCourseChooser(); }
+  onBtnDrawCourse()     { print('[UIManager] onBtnDrawCourse fired'); if (this.am) this.am.startDrawCourse();   else print('[UIManager] am is null'); }
+  onBtnChooseCourse()   { print('[UIManager] onBtnChooseCourse fired'); if (this.am) this.am.openCourseChooser(); else print('[UIManager] am is null'); }
   onBtnCourseListBack() { if (this.panelCourseList) this.panelCourseList.enabled = false; }
 
   onBtnCourseCard0()    { this.selectPresetByIndex(0); }

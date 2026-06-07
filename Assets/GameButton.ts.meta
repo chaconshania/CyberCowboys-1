@@ -1,0 +1,74 @@
+- !<AssetImportMetadata/080180e6-d3dc-43fc-8f89-62b3a7e4d8a3>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> e0b0592c-674b-4969-85e5-a966fe6dc505
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> e0b0592c-674b-4969-85e5-a966fe6dc505
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 4561b71f-5e00-467c-bbdb-d90eac49b2f8
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/4561b71f-5e00-467c-bbdb-d90eac49b2f8>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 97b8b6a6-34d6-45b5-af0b-08dc4e50c2fa
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    animationDuration: false
+    buttonImage: false
+    buttonStyle: false
+    colliderDepth: false
+    colliderSize: false
+    hoverScale: false
+    pressHandler: false
+    pressHandlerMethod: false
+    pressedScale: false
+    supportsActiveState: false
+    visualRoot: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - buttonStyle: !<float> 0.000000
+      buttonImage: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      visualRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      supportsActiveState: false
+      hoverScale: 1.040000
+      pressedScale: 0.960000
+      animationDuration: 0.120000
+      colliderSize: !<Vec3> {x: 0.000000, y: 0.000000, z: 0.000000}
+      colliderDepth: !<float> 2.000000
+      pressHandler: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      pressHandlerMethod: ""
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input float buttonStyle {"widget":"combobox", "values":[{"label":"Filled Yellow", "value":0}, {"label":"Outline Yellow", "value":1}]}'
+    - // @input SceneObject buttonImage
+    - // @input SceneObject visualRoot
+    - // @input bool supportsActiveState
+    - // @input float hoverScale = 1.04
+    - // @input float pressedScale = 0.96
+    - // @input float animationDuration = 0.12
+    - // @input vec3 colliderSize
+    - // @input float colliderDepth = 5
+    - // @input Component.ScriptComponent pressHandler
+    - // @input string pressHandlerMethod

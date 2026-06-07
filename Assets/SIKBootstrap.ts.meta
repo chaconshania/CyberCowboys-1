@@ -1,0 +1,44 @@
+- !<AssetImportMetadata/962841de-d3ed-436a-8a3b-1a444d46ad5b>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 7ddb76ba-0806-4a27-bb80-e49dd5ec0e96
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 7ddb76ba-0806-4a27-bb80-e49dd5ec0e96
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> a7075bae-5ebf-46df-a70f-2cd1c9055f48
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/a7075bae-5ebf-46df-a70f-2cd1c9055f48>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: d9ce73ce-dfac-40fd-b04f-0f4660fc465b
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    sikPrefab: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - sikPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input Asset.ObjectPrefab sikPrefab
