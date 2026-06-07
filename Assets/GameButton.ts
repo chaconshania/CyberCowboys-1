@@ -137,6 +137,7 @@ export class GameButton extends BaseScriptComponent {
 
   setDisabled(disabled: boolean) {
     this.isDisabled = disabled;
+    this.setInteractableEnabled(!disabled);
     if (this.isInitialized()) this.applyVisualState(this.resolveVisualState(), false);
   }
 
@@ -168,7 +169,19 @@ export class GameButton extends BaseScriptComponent {
 
     this.bindInteractable(this.interactable);
     this.setupHitTarget();
+    this.setInteractableEnabled(!this.isDisabled);
     this.applyVisualState(this.resolveVisualState(), true);
+  }
+
+  private setInteractableEnabled(enabled: boolean) {
+    if (!this.interactable) return;
+    try {
+      this.interactable.enabled = enabled;
+    } catch (e) {
+      try {
+        this.interactable.getSceneObject().enabled = enabled;
+      } catch (e2) {}
+    }
   }
 
   private findInteractable(): Interactable | null {
